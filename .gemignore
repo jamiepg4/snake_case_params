@@ -1,0 +1,7 @@
+.ruby-version
+spec/
+.gemignore
+.rubocop.yml
+.gitignore
+Guardfile
+Rakefile

@@ -1,0 +1,68 @@
+# borrowed from https://github.com/ministryofjustice
+AllCops:
+  # Exclude things we don't really care about
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - '**/*.gemspec'
+    - '**/Rakefile'
+    - '**/Vagrantfile'
+    - 'spec/rails_helper.rb'
+    - 'Guardfile'
+    - 'spec/teaspoon_env.rb'
+  RunRailsCops: true
+
+# private/protected/public
+#Style/AccessModifierIndentation:
+#  EnforcedStyle: outdent
+
+# Just indent parameters by two spaces. It's less volatile if methods change,
+# and there's less busy work lining things up.
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+# Chain methods with trailing dots.
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+# It's not really clearer to replace every if with a return if.
+Style/GuardClause:
+  Enabled: false
+
+# Would enforce do_y if x over if x / do y / end. As with GuardClause above,
+# this enforces code organisation that doesn't necesarily make things clearer.
+IfUnlessModifier:
+  Enabled: false
+
+# Allow long lines in specs, as it's almost impossible to fit RSpec's
+# expectations into 80 characters.
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+# Don't worry about long methods in specs.
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'spec/**/*'
+
+# Percent-formatting and hash interpolation both have their place. Don't
+# enforce any particular one.
+Style/StringLiterals:
+  Enabled: false
+
+# Prefer sensible naming to comments everywhere.
+Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+
+# Allow safe assignment in conditions.
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: false
