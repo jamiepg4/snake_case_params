@@ -3,7 +3,9 @@ module SnakeCaseParams
     extend ActiveSupport::Concern
 
     included do
-      before_filter :deep_snake_case_params!
+      if SnakeCaseParams.add_before_filter_to_application_controller
+        before_filter :deep_snake_case_params!
+      end
     end
 
     # convert camelCase json params to under_scored params
